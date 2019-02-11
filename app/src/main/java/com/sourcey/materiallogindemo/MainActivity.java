@@ -4,54 +4,77 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.sourcey.materiallogindemo.Fragments.FragmentCapital;
+import com.sourcey.materiallogindemo.Fragments.FragmentHome;
+import com.sourcey.materiallogindemo.Fragments.FragmentInformation;
+import com.sourcey.materiallogindemo.Fragments.FragmentNotes;
+import com.sourcey.materiallogindemo.Fragments.FragmentTransaction;
 
-public class MainActivity extends AppCompatActivity {
 
-    private TextView mTextMessage;
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
-                    return true;
-                case R.id.navigation_notes:
-                    mTextMessage.setText(R.string.title_notes);
-                    return true;
-                case R.id.navigation_transaction:
-                    mTextMessage.setText(R.string.title_transaction);
-                    return true;
-                case R.id.navigation_capital:
-                    mTextMessage.setText(R.string.title_capital);
-                    return true;
-                case R.id.navigation_information:
-                    mTextMessage.setText(R.string.title_information);
-                    return true;
-            }
-            return false;
-        }
-    };
+    private BottomNavigationView navigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(this);
 
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+        loadFragment(new FragmentHome());
+    }
 
-        mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+    // Replace the Current Fragment
+    private boolean loadFragment(Fragment fragment){
+        if(fragment != null){
+
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .commit();
+
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        // Check which menu item is checked
+        Fragment fragment = null;
+
+        switch (item.getItemId()) {
+            case R.id.navigation_home:
+                fragment = new FragmentHome();
+                break;
+            case R.id.navigation_notes:
+                fragment = new FragmentNotes();
+                break;
+            case R.id.navigation_transaction:
+                fragment = new FragmentTransaction();
+                break;
+            case R.id.navigation_capital:
+                fragment = new FragmentCapital();
+                break;
+            case R.id.navigation_information:
+                fragment = new FragmentInformation();
+                break;
+        }
+
+        // Call the method that replaces the fragment
+        return loadFragment(fragment);
     }
 
     @Override

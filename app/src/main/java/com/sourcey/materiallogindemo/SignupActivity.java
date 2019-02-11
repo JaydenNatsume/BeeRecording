@@ -3,19 +3,35 @@ package com.sourcey.materiallogindemo;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.sourcey.materiallogindemo.Helper.UserInformation;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SignupActivity extends AppCompatActivity {
+
     private static final String TAG = "SignupActivity";
+    private ProgressBar progressBar;
+    private FirebaseAuth firebaseAuth;
+    private DatabaseReference databaseReference;
 
     @BindView(R.id.input_name) EditText _nameText;
     @BindView(R.id.input_address) EditText _addressText;
@@ -30,6 +46,11 @@ public class SignupActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        progressBar = (ProgressBar) findViewById(R.id.progressbar);
+        databaseReference = FirebaseDatabase.getInstance().getReference("users");
+
         ButterKnife.bind(this);
 
         _signupButton.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +97,30 @@ public class SignupActivity extends AppCompatActivity {
 
         // TODO: Implement your own signup logic here.
 
+        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    // User is successfully registered and logged in.
+                    // we will start the profile activity from here
+                    // right now let's display a toast only
+                    Toast.makeText(SignupActivity.this, "Successful! Please login", Toast.LENGTH_SHORT).show();
+                    saveUserInformation();
+                    Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                }
+                else{
+                    if(task.getException()instanceof FirebaseAuthUserCollisionException){
+                        Toast.makeText(SignupActivity.this, "You are already registered", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(SignupActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
@@ -88,6 +133,25 @@ public class SignupActivity extends AppCompatActivity {
                 }, 3000);
     }
 
+    // UserInformation(String uid, String name, String address, String email, String mobile, String password)
+
+    public void saveUserInformation(){
+
+        String name = _nameText.getText().toString();
+        String address = _addressText.getText().toString();
+        String email = _emailText.getText().toString();
+        String mobile = _mobileText.getText().toString();
+        String password = _passwordText.getText().toString();
+        String reEnterPassword = _reEnterPasswordText.getText().toString();
+
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+
+        UserInformation userInformation = new UserInformation(user.getUid(), name, address, email, mobile,password);
+
+        databaseReference.child(user.getUid()).setValue(userInformation);
+
+    }
+
 
     public void onSignupSuccess() {
         _signupButton.setEnabled(true);
@@ -96,7 +160,7 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     public void onSignupFailed() {
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Sign Up failed", Toast.LENGTH_LONG).show();
 
         _signupButton.setEnabled(true);
     }

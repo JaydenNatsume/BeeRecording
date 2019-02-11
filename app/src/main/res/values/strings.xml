@@ -9,4 +9,9 @@
     <string name="title_transaction">Transaction</string>
     <string name="title_capital">Capital</string>
     <string name="title_information">Information</string>
+    <string name="press_again_exit_app">Press again to exit</string>
+
+    <string name="error_message_email">Email Required</string>
+    <string name="error_message_password">Password Required</string>
+
 </resources>
