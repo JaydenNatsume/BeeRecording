@@ -16,7 +16,7 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="56dp"
+            android:paddingTop="30dp"
             android:paddingLeft="24dp"
             android:paddingRight="24dp">
 
@@ -69,6 +69,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:indeterminateDrawable="@drawable/progressbar"
                 android:visibility="gone"/>
 
             <TextView android:id="@+id/link_signup"
