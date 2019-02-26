@@ -114,11 +114,11 @@ public class SignupActivity extends AppCompatActivity {
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                progressBar.setVisibility(View.GONE);
                 if(task.isSuccessful()){
                     // User is successfully registered and logged in.
                     // we will start the profile activity from here
                     // right now let's display a toast only
-                    progressBar.setVisibility(View.GONE);
                     Toast.makeText(SignupActivity.this, "Successful! Please login", Toast.LENGTH_SHORT).show();
                     saveUserInformation();
                     Intent intent = new Intent(SignupActivity.this, LoginActivity.class);

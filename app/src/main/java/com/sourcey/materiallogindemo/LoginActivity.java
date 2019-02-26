@@ -42,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.input_password) EditText _passwordText;
     @BindView(R.id.btn_login) Button _loginButton;
     @BindView(R.id.link_signup) TextView _signupLink;
+    @BindView(R.id.link_forgot_password) TextView _resetPasswordLink;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -70,6 +71,16 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(new Intent(LoginActivity.this, SignupActivity.class));
             }
         });
+
+        /*_resetPasswordLink.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // Start the Signup activity
+                finish();
+                startActivity(new Intent(LoginActivity.this, SignupActivity.class));
+            }
+        });*/
 
         if (PreferenceUtils.getEmail(this) != null ){
             _emailText.setText(PreferenceUtils.getEmail(this));
@@ -107,8 +118,8 @@ public class LoginActivity extends AppCompatActivity {
         mAuth.signInWithEmailAndPassword(_emailText.getText().toString().trim(), _passwordText.getText().toString().trim()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                progressBar.setVisibility(View.GONE);
                 if(task.isSuccessful()){
-                    progressBar.setVisibility(View.GONE);
                     // add flags to clear all the opened activities
                     // otherwise the app will come back to login activity if the user presses "down"
                     PreferenceUtils.saveEmail(_emailText.getText().toString().trim(), getApplicationContext());
