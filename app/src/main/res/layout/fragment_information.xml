@@ -6,7 +6,7 @@
     android:fitsSystemWindows="true">
 
     <RelativeLayout
-        android:id="@+id/relativeLayout"
+        android:id="@+id/infoRelativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -28,29 +28,29 @@
 
             <!-- Name Label -->
             <LinearLayout
-                android:id="@+id/textInputLayoutName"
+                android:id="@+id/infoInputLayoutName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp">
 
-                <EditText android:id="@+id/input_name"
+                <EditText android:id="@+id/information_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
+                    android:inputType="none"
                     android:hint="Name" />
 
             </LinearLayout>
 
             <!-- Address Label -->
             <LinearLayout
-                android:id="@+id/textInputLayoutAddress"
+                android:id="@+id/infoInputLayoutAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp">
 
-                <EditText android:id="@+id/input_address"
+                <EditText android:id="@+id/information_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPostalAddress"
@@ -62,13 +62,13 @@
 
             <!--  Email Label -->
             <LinearLayout
-                android:id="@+id/textInputLayoutEmail"
+                android:id="@+id/infoInputLayoutEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp">
 
-                <EditText android:id="@+id/input_email"
+                <EditText android:id="@+id/information_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
@@ -79,13 +79,13 @@
 
             <!-- mobile number -->
             <LinearLayout
-                android:id="@+id/textInputLayoutMobile"
+                android:id="@+id/infoInputLayoutMobile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp">
 
-                <EditText android:id="@+id/input_mobile"
+                <EditText android:id="@+id/information_mobile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
