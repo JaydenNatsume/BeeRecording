@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,7 +31,6 @@ import butterknife.ButterKnife;
 public class SignupActivity extends AppCompatActivity {
 
     private static final String TAG = "SignupActivity";
-    private ProgressBar progressBar;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
 
@@ -58,7 +56,6 @@ public class SignupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        progressBar = (ProgressBar) findViewById(R.id.progressbar);
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
         textInputLayoutName = (TextInputLayout) findViewById(R.id.textInputLayoutName);
@@ -109,7 +106,6 @@ public class SignupActivity extends AppCompatActivity {
 
         // TODO: Implement your own signup logic here.
 
-        progressBar.setVisibility(View.VISIBLE);
 
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override

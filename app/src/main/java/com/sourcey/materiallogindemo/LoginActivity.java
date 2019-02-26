@@ -32,7 +32,6 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
     private InputValidation inputValidation;
-    private ProgressBar progressBar;
     FirebaseAuth mAuth;
 
     private TextInputLayout textInputLayoutEmail;
@@ -51,7 +50,6 @@ public class LoginActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         mAuth = FirebaseAuth.getInstance();
-        progressBar = (ProgressBar) findViewById(R.id.progressbar);
         textInputLayoutEmail = (TextInputLayout) findViewById(R.id.textInput_email);
         textInputLayoutPassword = (TextInputLayout) findViewById(R.id.textInput_password);
 
@@ -113,7 +111,6 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        progressBar.setVisibility(View.VISIBLE);
 
         mAuth.signInWithEmailAndPassword(_emailText.getText().toString().trim(), _passwordText.getText().toString().trim()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
