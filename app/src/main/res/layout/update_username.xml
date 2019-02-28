@@ -16,13 +16,12 @@
 
         <!-- Name Label -->
         <LinearLayout
-            android:id="@+id/usernameInputLayoutName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
 
-            <EditText android:id="@+id/username_name"
+            <EditText android:id="@+id/current_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none"
@@ -47,7 +46,7 @@
 
         <!-- Save Button -->
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_username_save"
+            android:id="@+id/btn_save_username"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"

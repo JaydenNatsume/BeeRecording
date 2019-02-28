@@ -12,7 +12,7 @@ public class UpdateUsername extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update_username);
+        setContentView(R.layout.update_username);
 
         EditText username_edit = findViewById(R.id.information_name);
         username_edit.setOnClickListener(new View.OnClickListener() {
