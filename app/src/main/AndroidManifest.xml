@@ -22,7 +22,8 @@
             android:name=".SignupActivity"
             android:theme="@style/AppTheme.Dark" />
         <activity android:name=".Information.UpdateUsername" />
-        <activity android:name=".WatchListDetails"></activity>
+        <activity android:name=".WatchListDetails" />
+        <activity android:name=".WatchListNews"></activity>
     </application>
 
 </manifest>

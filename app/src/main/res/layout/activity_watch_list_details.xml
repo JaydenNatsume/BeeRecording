@@ -6,4 +6,86 @@
     android:layout_height="match_parent"
     tools:context="com.sourcey.materiallogindemo.WatchListDetails">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="20dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:orientation="vertical">
+
+
+        <!-- 第一行显示 Ticker Symbol 和 其代号-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <!-- Ticker Symbol 字样-->
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:textStyle="bold"
+                android:textSize="@string/font_size"
+                android:text="@string/ticker_symbol"/>
+
+            <!-- Ticker Symbol 值-->
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="@string/font_size"
+                android:layout_gravity="center_vertical"
+                android:text="AAPL"/>
+
+        </LinearLayout>
+
+
+        <!-- 第二行显示 Price 和 价格-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <!-- Price 字样-->
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="@string/font_size"
+                android:layout_gravity="center_vertical"
+                android:text="@string/price"/>
+
+            <!-- Ticker Symbol 值-->
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="@string/font_size"
+                android:layout_gravity="center_vertical"
+                android:text="174.87"/>
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_news"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="News"/>
+
+        <!-- News ListView -->
+        <ListView
+            android:id="@+id/list_view_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </ListView>
+
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
