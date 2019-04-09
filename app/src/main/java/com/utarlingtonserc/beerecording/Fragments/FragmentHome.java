@@ -92,39 +92,38 @@ public class FragmentHome extends Fragment implements WatchlistAdapter.ItemClick
                 ByteArrayOutputStream outStream = new ByteArrayOutputStream();
                 byte[] data = new byte[1024];
                 int len = 0;
-                try {
-                    String[] symbol_list = {"MSFT", "AAPL", "PYPL"};
-                    URL url = new URL("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=MSFT&interval=1min&apikey=3WNQE8NDKHWW1NFJ");
-                    connection = (HttpURLConnection) url.openConnection();
-                    connection.setRequestMethod("GET");
-                    connection.setConnectTimeout(5000);
-                    connection.setReadTimeout(5000);
-                    InputStream in = connection.getInputStream();
-
-//                    reader = new BufferedReader(new InputStreamReader(in));
-//                    StringBuffer response = new StringBuffer();
-//                    String line;
-//                    while ((line = reader.readLine()) != null) {
-//                        response.append(line);
-//                    }
                     // 下面对获取到的输入流进行读取，转化为json对象
-                    while ((len = in.read(data)) != -1) {
-                        outStream.write(data, 0, len);
-                    }
-                    String response = new String(outStream.toByteArray());
-                    showResponse(response);
-                } catch (Exception e){
-                    e.printStackTrace();
-                } finally {
-                    if (reader != null) {
-                        try {
-                            reader.close();
-                        } catch (IOException e){
-                            e.printStackTrace();
+                String urlHead = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=";
+                String urlEnd = "&interval=1min&apikey=3WNQE8NDKHWW1NFJ";
+                String[] symbol_list = {"MSFT", "AAPL", "PYPL", "GOOG"};
+                for (String symbol : symbol_list) {
+                    try {
+                        URL url = new URL(urlHead + symbol + urlEnd);
+                        Log.d("FragmentHome", symbol);
+                        connection = (HttpURLConnection) url.openConnection();
+                        connection.setRequestMethod("GET");
+                        connection.setConnectTimeout(5000);
+                        connection.setReadTimeout(5000);
+                        InputStream in = connection.getInputStream();
+                        // 下面对获取到的输入流进行读取，转化为json对象
+                        while ((len = in.read(data)) != -1) {
+                            outStream.write(data, 0, len);
                         }
-                    }
-                    if (connection != null) {
-                        connection.disconnect();
+                        String response = new String(outStream.toByteArray());
+                        showResponse(response);
+                    } catch (Exception e){
+                        e.printStackTrace();
+                    } finally {
+                        if (reader != null) {
+                            try {
+                                reader.close();
+                            } catch (IOException e){
+                                e.printStackTrace();
+                            }
+                        }
+                        if (connection != null) {
+                            connection.disconnect();
+                        }
                     }
                 }
             }
