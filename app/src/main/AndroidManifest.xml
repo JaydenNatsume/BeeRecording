@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sourcey.materiallogindemo">
+    package="com.utarlingtonserc.beerecording">
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/launch3"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme.Dark">
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
         <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -14,16 +18,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
-        <activity
-            android:name=".LoginActivity"
-            android:theme="@style/AppTheme.Dark" />
-        <activity
-            android:name=".SignupActivity"
-            android:theme="@style/AppTheme.Dark" />
-        <activity android:name=".Information.UpdateUsername" />
-        <activity android:name=".WatchListDetails" />
-        <activity android:name=".WatchListNews"></activity>
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".SignupActivity"></activity>
+        <activity android:name=".NoteActivity"></activity>
+        <activity android:name=".EditInfoActivity"></activity>
+        <activity android:name=".WatchListDetailsActivity"></activity>
+        <activity android:name=".NewsActivity"></activity>
+        <activity android:name=".NewsDetailActivity"></activity>
     </application>
 
 </manifest>

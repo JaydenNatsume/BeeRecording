@@ -8,26 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.Dark" parent="Theme.AppCompat.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-
-        <item name="android:windowBackground">@color/colorPrimary</item>
-
-        <item name="colorControlNormal">@color/iron</item>
-        <item name="colorControlActivated">@color/colorAccent</item>
+    <style name="MyAppBarLayoutTheme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="colorControlHighlight">@color/colorAccent</item>
-        <item name="android:textColorHint">@color/colorText</item>
-
-        <item name="colorButtonNormal">@color/colorSecondary</item>
-        <item name="android:colorButtonNormal">@color/colorSecondaryDark</item>
-    </style>
-
-    <style name="AppTheme.Dark.Dialog" parent="Theme.AppCompat.Dialog">
-        <item name="colorAccent">@color/oil</item>
-        <item name="android:textColorPrimary">@color/colorText</item>
-        <item name="android:background">@color/colorPrimary</item>
     </style>
 
 </resources>

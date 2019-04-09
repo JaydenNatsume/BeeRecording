@@ -20,7 +20,7 @@
             android:paddingLeft="24dp"
             android:paddingRight="24dp">
 
-            <ImageView android:src="@drawable/logo_v4"
+            <ImageView android:src="@drawable/logo_bee2"
                 android:layout_width="wrap_content"
                 android:layout_height="72dp"
                 android:layout_marginBottom="24dp"
@@ -133,6 +133,7 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
                 android:padding="12dp"
+                android:background="@color/colorPrimaryDark"
                 android:text="Create Account"/>
 
             <ProgressBar
@@ -150,7 +151,8 @@
                 android:layout_marginBottom="24dp"
                 android:text="Already a member? Login"
                 android:gravity="center"
-                android:textSize="16dip"/>
+                android:textSize="16dip"
+                android:textColor="@color/colorText"/>
 
         </LinearLayout>
     </RelativeLayout>

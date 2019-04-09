@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Bee Recording</string>
+    <string name="app_name">BeeRecording</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -13,11 +13,4 @@
 
     <string name="error_message_email">Email Required</string>
     <string name="error_message_password">Password Required</string>
-
-    <string name="ticker_symbol">Ticker Symbol</string>
-    <string name="price">Price</string>
-
-    <string name="font_size">16dp</string>
-
-
 </resources>
