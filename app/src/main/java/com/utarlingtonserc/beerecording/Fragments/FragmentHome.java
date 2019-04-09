@@ -93,20 +93,21 @@ public class FragmentHome extends Fragment implements WatchlistAdapter.ItemClick
                 byte[] data = new byte[1024];
                 int len = 0;
                 try {
-                    URL url = new URL("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=MSFT&interval=1min&apikey=demo");
+                    String[] symbol_list = {"MSFT", "AAPL", "PYPL"};
+                    URL url = new URL("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=MSFT&interval=1min&apikey=3WNQE8NDKHWW1NFJ");
                     connection = (HttpURLConnection) url.openConnection();
                     connection.setRequestMethod("GET");
                     connection.setConnectTimeout(5000);
                     connection.setReadTimeout(5000);
                     InputStream in = connection.getInputStream();
 
-                    // 下面对获取到的输入流进行读取
 //                    reader = new BufferedReader(new InputStreamReader(in));
 //                    StringBuffer response = new StringBuffer();
 //                    String line;
 //                    while ((line = reader.readLine()) != null) {
 //                        response.append(line);
 //                    }
+                    // 下面对获取到的输入流进行读取，转化为json对象
                     while ((len = in.read(data)) != -1) {
                         outStream.write(data, 0, len);
                     }
@@ -137,32 +138,14 @@ public class FragmentHome extends Fragment implements WatchlistAdapter.ItemClick
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        if(object != null) {
+            JSONObject ObjectInfo = object.optJSONObject("Meta Data");
+            String information = ObjectInfo.optString("1. Information");
+            String symbol = ObjectInfo.optString("2. Symbol");
+            Log.d("FragmentHome", symbol);
+        }
 
-        JSONObject ObjectInfo = object.optJSONObject("Meta Data");
-        String information = ObjectInfo.optString("1. Information");
-        String symbol = ObjectInfo.optString("2. Symbol");
 
-        Log.d("FragmentHome", symbol);
-
-//        尝试解析json数据，结果：失败！
-//        JsonReader reader = new JsonReader(new String gReader(response));
-//        reader.setLenient(true);
-//        Log.d("FragmentHome", "exe?");
-//        try {
-//            reader.beginArray();
-//            while (reader.hasNext()) {
-//                reader.beginObject();
-//                while (reader.hasNext()) {
-//                    String tagName = reader.nextName();
-//                    Log.d("FragmentHome", tagName);
-//                    Log.d("FragmentHome", reader.nextString());
-//                }
-//                reader.endObject();
-//            }
-//            reader.endArray();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
     }
 
     private void initWatchList() {
