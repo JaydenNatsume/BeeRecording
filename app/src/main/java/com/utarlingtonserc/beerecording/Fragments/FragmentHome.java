@@ -19,7 +19,11 @@ import com.utarlingtonserc.beerecording.Helper.WatchList;
 import com.utarlingtonserc.beerecording.R;
 import com.utarlingtonserc.beerecording.WatchListDetailsActivity;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -85,6 +89,9 @@ public class FragmentHome extends Fragment implements WatchlistAdapter.ItemClick
             public void run() {
                 HttpURLConnection connection = null;
                 BufferedReader reader = null;
+                ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+                byte[] data = new byte[1024];
+                int len = 0;
                 try {
                     URL url = new URL("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=MSFT&interval=1min&apikey=demo");
                     connection = (HttpURLConnection) url.openConnection();
@@ -94,13 +101,17 @@ public class FragmentHome extends Fragment implements WatchlistAdapter.ItemClick
                     InputStream in = connection.getInputStream();
 
                     // 下面对获取到的输入流进行读取
-                    reader = new BufferedReader(new InputStreamReader(in));
-                    StringBuffer response = new StringBuffer();
-                    String line;
-                    while ((line = reader.readLine()) != null) {
-                        response.append(line);
+//                    reader = new BufferedReader(new InputStreamReader(in));
+//                    StringBuffer response = new StringBuffer();
+//                    String line;
+//                    while ((line = reader.readLine()) != null) {
+//                        response.append(line);
+//                    }
+                    while ((len = in.read(data)) != -1) {
+                        outStream.write(data, 0, len);
                     }
-                    showResponse(response.toString());
+                    String response = new String(outStream.toByteArray());
+                    showResponse(response);
                 } catch (Exception e){
                     e.printStackTrace();
                 } finally {
@@ -120,10 +131,21 @@ public class FragmentHome extends Fragment implements WatchlistAdapter.ItemClick
     }
 
     private void showResponse(final String response) {
-        Log.d("FragmentHome", response);
+        JSONObject object = null;
+        try {
+            object = new JSONObject(response);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JSONObject ObjectInfo = object.optJSONObject("Meta Data");
+        String information = ObjectInfo.optString("1. Information");
+        String symbol = ObjectInfo.optString("2. Symbol");
+
+        Log.d("FragmentHome", symbol);
 
 //        尝试解析json数据，结果：失败！
-//        JsonReader reader = new JsonReader(new Strin gReader(response));
+//        JsonReader reader = new JsonReader(new String gReader(response));
 //        reader.setLenient(true);
 //        Log.d("FragmentHome", "exe?");
 //        try {
