@@ -92,7 +92,6 @@ public class FragmentHome extends Fragment implements WatchlistAdapter.ItemClick
                 ByteArrayOutputStream outStream = new ByteArrayOutputStream();
                 byte[] data = new byte[1024];
                 int len = 0;
-                    // 下面对获取到的输入流进行读取，转化为json对象
                 String urlHead = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=";
                 String urlEnd = "&interval=1min&apikey=3WNQE8NDKHWW1NFJ";
                 String[] symbol_list = {"MSFT", "AAPL", "PYPL", "GOOG"};
