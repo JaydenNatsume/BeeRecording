@@ -89,9 +89,6 @@ public class FragmentHome extends Fragment implements WatchlistAdapter.ItemClick
             public void run() {
                 HttpURLConnection connection = null;
                 BufferedReader reader = null;
-                ByteArrayOutputStream outStream = new ByteArrayOutputStream();
-                byte[] data = new byte[1024];
-                int len = 0;
                 String urlHead = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=";
                 String urlEnd = "&interval=1min&apikey=3WNQE8NDKHWW1NFJ";
                 String[] symbol_list = {"MSFT", "AAPL", "PYPL", "GOOG"};
@@ -103,14 +100,20 @@ public class FragmentHome extends Fragment implements WatchlistAdapter.ItemClick
                         connection.setRequestMethod("GET");
                         connection.setConnectTimeout(5000);
                         connection.setReadTimeout(5000);
+                        ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+                        byte[] data = new byte[1024];
                         InputStream in = connection.getInputStream();
                         // 下面对获取到的输入流进行读取，转化为json对象
+                        int len;
                         while ((len = in.read(data)) != -1) {
                             outStream.write(data, 0, len);
                         }
+
+                        in.close();
+                        outStream.close();
                         String response = new String(outStream.toByteArray());
                         showResponse(response);
-                    } catch (Exception e){
+                    } catch (Exception e) {
                         e.printStackTrace();
                     } finally {
                         if (reader != null) {
@@ -130,17 +133,24 @@ public class FragmentHome extends Fragment implements WatchlistAdapter.ItemClick
     }
 
     private void showResponse(final String response) {
+        Log.d("FragmentHome", "123123");
         JSONObject object = null;
         try {
             object = new JSONObject(response);
+            Log.d("FragmentHome", object.toString());
         } catch (JSONException e) {
+            Log.d("FragmentHome", "456456");
             e.printStackTrace();
         }
         if(object != null) {
             JSONObject ObjectInfo = object.optJSONObject("Meta Data");
+            if(ObjectInfo == null){
+                Log.d("FragmentHome", "bgqevguqvthwevgiw");
+            }
             String information = ObjectInfo.optString("1. Information");
             String symbol = ObjectInfo.optString("2. Symbol");
             Log.d("FragmentHome", symbol);
+            Log.d("FragmentHome", information);
         }
 
 
