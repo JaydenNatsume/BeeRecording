@@ -18,14 +18,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".LoginActivity"></activity>
-        <activity android:name=".SignupActivity"></activity>
-        <activity android:name=".NoteActivity"></activity>
-        <activity android:name=".EditInfoActivity"></activity>
-        <activity android:name=".WatchListDetailsActivity"></activity>
-        <activity android:name=".NewsActivity"></activity>
-        <activity android:name=".NewsDetailActivity"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".SignupActivity" />
+        <activity android:name=".NoteActivity" />
+        <activity android:name=".EditInfoActivity" />
+        <activity android:name=".WatchListDetailsActivity" />
+        <activity android:name=".NewsActivity" />
+        <activity android:name=".NewsDetailActivity" />
+        <activity android:name=".TransBuy" />
+        <activity android:name=".TransSell"></activity>
     </application>
 
 </manifest>

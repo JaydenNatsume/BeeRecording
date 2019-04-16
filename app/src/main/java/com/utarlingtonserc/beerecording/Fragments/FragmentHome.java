@@ -77,13 +77,17 @@ public class FragmentHome extends Fragment implements WatchlistAdapter.ItemClick
             // 当搜索内容改变时触发该方法
             @Override
             public boolean onQueryTextChange(String s) {
+                update();
                 if (s.isEmpty()){
+                    watchlistAdapter.notifyDataSetChanged();
                     Toast.makeText(getActivity(),"Blank input.", Toast.LENGTH_SHORT).show();
                 }else if (s.equals("a")){
                     watchLists.clear();
                     watchLists.add(new WatchList("AAPL", symbol_quote));
                     watchlistAdapter.notifyDataSetChanged();
                 }else {
+                    watchLists.clear();
+                    watchlistAdapter.notifyDataSetChanged();
                     Toast.makeText(getActivity(),"No match.", Toast.LENGTH_SHORT).show();
                 }
 
@@ -91,7 +95,7 @@ public class FragmentHome extends Fragment implements WatchlistAdapter.ItemClick
             }
         });
 
-        watchLists = homeList;
+        update();
 
         watchlistAdapter = new WatchlistAdapter(getContext(), watchLists);
 
@@ -184,6 +188,16 @@ public class FragmentHome extends Fragment implements WatchlistAdapter.ItemClick
 
     private void initWatchList(String symbol, String quote) {
         homeList.add(new WatchList(symbol, quote));
+    }
+
+    private void update(){
+        watchLists.clear();
+        for (WatchList data : homeList){
+            watchLists.add(new WatchList(data.getTickerSymbol(), data.getLiveQuote()));
+            if (data.getTickerSymbol().equals("AAPL")){
+                symbol_quote = data.getLiveQuote();
+            }
+        }
     }
 
     @Override

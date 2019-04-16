@@ -3,12 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:layout_gravity="center_horizontal"
         android:orientation="horizontal">
 
@@ -27,28 +28,57 @@
             android:textColor="@color/oil"/>
     </LinearLayout>
 
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp"
+            app:cardUseCompatPadding="true">
+
+            <android.support.v7.widget.SearchView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/search_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:iconifiedByDefault="true"
+                android:imeOptions="actionSearch"
+                android:queryHint="Search me" />
+
+        </android.support.v7.widget.CardView>
+
+    </android.support.v7.widget.LinearLayoutCompat>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical">
 
         <Button
-            android:id="@+id/Buy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/buy_btn"
+            android:layout_width="396dp"
+            android:layout_height="160dp"
             android:layout_gravity="center_horizontal"
             android:background="@color/colorPrimaryDark"
-            android:text="Buy" />
+            android:text="Buy"
+            android:textSize="38sp" />
 
         <Button
-            android:id="@+id/Sell"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:id="@+id/sell_btn"
+            android:layout_width="match_parent"
+            android:layout_height="174dp"
             android:layout_gravity="center_horizontal"
-            android:background="@color/colorPrimaryDark"
-            android:text="Sell" />
+            android:background="@color/oil"
+            android:textColor="@color/colorPrimaryDark"
+            android:text="SELL"
+            android:textSize="38sp" />
+
     </LinearLayout>
 
 </LinearLayout>

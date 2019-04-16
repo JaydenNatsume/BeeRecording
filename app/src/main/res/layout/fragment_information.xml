@@ -11,6 +11,28 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <ImageView android:src="@drawable/logo_bee"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:text="Bee Recording"
+                android:textSize="26sp"
+                android:textColor="@color/oil"/>
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -21,14 +43,16 @@
                 android:layout_height="40dp"
                 android:layout_marginLeft="10dp"
                 android:src="@drawable/ic_person_black_24dp"
-                android:tint="@color/colorPrimaryDark"/>
+                android:tint="@color/black"/>
 
             <TextView
                 android:id="@+id/user_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
-                android:layout_gravity="center_vertical"/>
+                android:textSize="18sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -42,14 +66,16 @@
                 android:layout_height="40dp"
                 android:layout_marginLeft="10dp"
                 android:src="@drawable/ic_location_on_black_24dp"
-                android:tint="@color/colorPrimaryDark"/>
+                android:tint="@color/black"/>
 
             <TextView
                 android:id="@+id/user_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
-                android:layout_gravity="center_vertical"/>
+                android:textSize="18sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -63,14 +89,16 @@
                 android:layout_height="40dp"
                 android:layout_marginLeft="10dp"
                 android:src="@drawable/ic_email_black_24dp"
-                android:tint="@color/colorPrimaryDark"/>
+                android:tint="@color/black"/>
 
             <TextView
                 android:id="@+id/user_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
-                android:layout_gravity="center_vertical"/>
+                android:textSize="18sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -84,14 +112,16 @@
                 android:layout_height="40dp"
                 android:layout_marginLeft="10dp"
                 android:src="@drawable/ic_local_phone_black_24dp"
-                android:tint="@color/colorPrimaryDark"/>
+                android:tint="@color/black"/>
 
             <TextView
                 android:id="@+id/user_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
-                android:layout_gravity="center_vertical"/>
+                android:textSize="18sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
     </LinearLayout>
