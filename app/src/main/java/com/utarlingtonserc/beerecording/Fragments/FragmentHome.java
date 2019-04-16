@@ -28,10 +28,8 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 import com.utarlingtonserc.beerecording.MainActivity;
 
@@ -40,7 +38,6 @@ public class FragmentHome extends Fragment implements WatchlistAdapter.ItemClick
 
     private WatchlistAdapter watchlistAdapter;
     private List<WatchList> watchLists = new ArrayList<>();
-    private List<WatchList> homeList1 = new ArrayList<>();
     private List<WatchList> homeList;
     public RecyclerView watchlist_recyclerview;
     private String symbol_quote;
@@ -81,13 +78,10 @@ public class FragmentHome extends Fragment implements WatchlistAdapter.ItemClick
             @Override
             public boolean onQueryTextChange(String s) {
                 if (s.isEmpty()){
-                    watchLists = homeList;
-                    Log.d("FragmentHome", watchLists.toString());
-                    watchlistAdapter.notifyDataSetChanged();
                     Toast.makeText(getActivity(),"Blank input.", Toast.LENGTH_SHORT).show();
                 }else if (s.equals("a")){
-                    watchLists = homeList1;
-                    Log.d("FragmentHome", watchLists.toString());
+                    watchLists.clear();
+                    watchLists.add(new WatchList("AAPL", symbol_quote));
                     watchlistAdapter.notifyDataSetChanged();
                 }else {
                     Toast.makeText(getActivity(),"No match.", Toast.LENGTH_SHORT).show();
@@ -96,10 +90,6 @@ public class FragmentHome extends Fragment implements WatchlistAdapter.ItemClick
                 return false;
             }
         });
-
-        homeList1.clear();
-        Log.d("FragmentHome", symbol_quote);
-        homeList1.add(new WatchList("AAPL", symbol_quote));
 
         watchLists = homeList;
 
