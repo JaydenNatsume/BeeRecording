@@ -13,10 +13,20 @@ import com.utarlingtonserc.beerecording.Fragments.FragmentHome;
 import com.utarlingtonserc.beerecording.Fragments.FragmentInformation;
 import com.utarlingtonserc.beerecording.Fragments.FragmentNotes;
 import com.utarlingtonserc.beerecording.Fragments.FragmentTransaction;
+import com.utarlingtonserc.beerecording.Helper.WatchList;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     private BottomNavigationView navigation;
+    private static List<WatchList> homeList = new ArrayList<>();
+    public static int a = 5;
+
+    public static List<WatchList> get_list(){
+        return homeList;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

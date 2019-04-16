@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-import android.util.JsonReader;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,38 +25,45 @@ import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
+
+import com.utarlingtonserc.beerecording.MainActivity;
 
 public class FragmentHome extends Fragment implements WatchlistAdapter.ItemClickListener{
 
 
     private WatchlistAdapter watchlistAdapter;
     private List<WatchList> watchLists = new ArrayList<>();
+    private List<WatchList> homeList1 = new ArrayList<>();
+    private List<WatchList> homeList;
     public RecyclerView watchlist_recyclerview;
+    private String symbol_quote;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        watchlist_recyclerview = (RecyclerView) view.findViewById(R.id.recyclerView);
+        watchlist_recyclerview = view.findViewById(R.id.recyclerView);
         watchlist_recyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        initWatchList();
+        homeList = MainActivity.get_list();
 
-        watchlistAdapter = new WatchlistAdapter(getContext(), watchLists);
-
-        watchlist_recyclerview.setAdapter(watchlistAdapter);
-
-        watchlistAdapter.setClickListener(this);
-
-        // 从API获取json数据
-        sendRequestWithHttpURLConnection();
+        if (homeList.isEmpty()){
+            // 从API获取json数据
+            sendRequestWithHttpURLConnection();
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                Log.d("FragmentHome", "sleep failed");
+            }
+        }
 
         // 搜索
         SearchView searchView = view.findViewById(R.id.search_view);
@@ -67,17 +73,41 @@ public class FragmentHome extends Fragment implements WatchlistAdapter.ItemClick
             // 当点击搜索按钮时触发该方法
             @Override
             public boolean onQueryTextSubmit(String s) {
-                Toast.makeText(getActivity(),"Network ERROR. Please check your connection", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"asidfjasd.", Toast.LENGTH_SHORT).show();
                 return false;
             }
 
             // 当搜索内容改变时触发该方法
             @Override
             public boolean onQueryTextChange(String s) {
-                Toast.makeText(getActivity(),"Please check your connection", Toast.LENGTH_SHORT).show();
+                if (s.isEmpty()){
+                    watchLists = homeList;
+                    Log.d("FragmentHome", watchLists.toString());
+                    watchlistAdapter.notifyDataSetChanged();
+                    Toast.makeText(getActivity(),"Blank input.", Toast.LENGTH_SHORT).show();
+                }else if (s.equals("a")){
+                    watchLists = homeList1;
+                    Log.d("FragmentHome", watchLists.toString());
+                    watchlistAdapter.notifyDataSetChanged();
+                }else {
+                    Toast.makeText(getActivity(),"No match.", Toast.LENGTH_SHORT).show();
+                }
+
                 return false;
             }
         });
+
+        homeList1.clear();
+        Log.d("FragmentHome", symbol_quote);
+        homeList1.add(new WatchList("AAPL", symbol_quote));
+
+        watchLists = homeList;
+
+        watchlistAdapter = new WatchlistAdapter(getContext(), watchLists);
+
+        watchlist_recyclerview.setAdapter(watchlistAdapter);
+
+        watchlistAdapter.setClickListener(this);
 
         return view;
     }
@@ -95,7 +125,6 @@ public class FragmentHome extends Fragment implements WatchlistAdapter.ItemClick
                 for (String symbol : symbol_list) {
                     try {
                         URL url = new URL(urlHead + symbol + urlEnd);
-                        Log.d("FragmentHome", symbol);
                         connection = (HttpURLConnection) url.openConnection();
                         connection.setRequestMethod("GET");
                         connection.setConnectTimeout(5000);
@@ -133,33 +162,38 @@ public class FragmentHome extends Fragment implements WatchlistAdapter.ItemClick
     }
 
     private void showResponse(final String response) {
-        Log.d("FragmentHome", "123123");
         JSONObject object = null;
         try {
             object = new JSONObject(response);
-            Log.d("FragmentHome", object.toString());
         } catch (JSONException e) {
-            Log.d("FragmentHome", "456456");
             e.printStackTrace();
         }
         if(object != null) {
             JSONObject ObjectInfo = object.optJSONObject("Meta Data");
+            JSONObject ObjectInfo_times = object.optJSONObject("Time Series (1min)");
             if(ObjectInfo == null){
-                Log.d("FragmentHome", "bgqevguqvthwevgiw");
+                Toast.makeText(getActivity(),"API only 5 t/m.", Toast.LENGTH_SHORT).show();
+            }else {
+                // 获取symbol
+                String symbol = ObjectInfo.optString("2. Symbol");
+                // 获取Time Series (1min)的第一层对象
+                Iterator<String> iter = ObjectInfo_times.keys();
+                String key = iter.next();
+                JSONObject ObjectInfo_quote = ObjectInfo_times.optJSONObject(key);
+                String quote = ObjectInfo_quote.optString("1. open");
+                if (symbol.equals("AAPL")){
+                    symbol_quote = quote;
+                }
+                // 初始化watchlist中list的内容
+                initWatchList(symbol, quote);
             }
-            String information = ObjectInfo.optString("1. Information");
-            String symbol = ObjectInfo.optString("2. Symbol");
-            Log.d("FragmentHome", symbol);
-            Log.d("FragmentHome", information);
         }
 
 
     }
 
-    private void initWatchList() {
-        watchLists.add(new WatchList("AAPL", "174.87"));
-        watchLists.add(new WatchList("GE  ", "  10.88"));
-        watchLists.add(new WatchList("PYPL", "97.86"));
+    private void initWatchList(String symbol, String quote) {
+        homeList.add(new WatchList(symbol, quote));
     }
 
     @Override
