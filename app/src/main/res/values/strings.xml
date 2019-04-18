@@ -6,7 +6,7 @@
 
     <string name="title_home">Home</string>
     <string name="title_notes">Notes</string>
-    <string name="title_transaction">Transaction</string>
+    <string name="title_transaction">Record</string>
     <string name="title_capital">Capital</string>
     <string name="title_information">Information</string>
     <string name="press_again_exit_app">Press again to exit</string>

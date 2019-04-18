@@ -22,6 +22,7 @@ public class FragmentTransaction extends Fragment {
 
         Button buyBtn = view.findViewById(R.id.buy_btn);
         Button sellBtn = view.findViewById(R.id.sell_btn);
+        Button performanceBtn = view.findViewById(R.id.performance_btn);
 
         buyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,11 +31,20 @@ public class FragmentTransaction extends Fragment {
                 startActivity(buy_intent);
             }
         });
+
         sellBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent sell_intent = new Intent(getActivity(), TransSell.class);
                 startActivity(sell_intent);
+            }
+        });
+
+        performanceBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent performance_intent = new Intent(getActivity(), TransSell.class);
+                startActivity(performance_intent);
             }
         });
 

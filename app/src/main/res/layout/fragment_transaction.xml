@@ -63,7 +63,7 @@
         <Button
             android:id="@+id/buy_btn"
             android:layout_width="396dp"
-            android:layout_height="160dp"
+            android:layout_height="80dp"
             android:layout_gravity="center_horizontal"
             android:background="@color/colorPrimaryDark"
             android:text="Buy"
@@ -72,11 +72,21 @@
         <Button
             android:id="@+id/sell_btn"
             android:layout_width="match_parent"
-            android:layout_height="174dp"
+            android:layout_height="80dp"
             android:layout_gravity="center_horizontal"
             android:background="@color/oil"
-            android:textColor="@color/colorPrimaryDark"
             android:text="SELL"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="38sp" />
+
+        <Button
+            android:id="@+id/performance_btn"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/colorPrimaryDark"
+            android:text="PERFORMANCE"
+            android:textColor="@color/black"
             android:textSize="38sp" />
 
     </LinearLayout>
