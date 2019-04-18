@@ -36,6 +36,7 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/three_days_btn"
             android:layout_width="160dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -43,6 +44,7 @@
             android:text="Last Three Days"/>
 
         <Button
+            android:id="@+id/past_week_btn"
             android:layout_width="160dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -57,6 +59,7 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/one_month_btn"
             android:layout_width="160dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -64,6 +67,7 @@
             android:text="Last One Month"/>
 
         <Button
+            android:id="@+id/three_month_btn"
             android:layout_width="160dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -87,12 +91,14 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/capital_text_view"
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:gravity="center"
             android:textSize="18sp"
             android:textStyle="bold"
             android:background="@drawable/capital_round_right_border"
+            android:text="0.00"
             />
 
     </LinearLayout>

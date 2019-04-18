@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +38,8 @@ public class LoginActivity extends AppCompatActivity {
     private TextView _signupLink;
     private TextView _resetPasswordLink;
 
+    private ProgressBar loginProgressBar;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
         _loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                loginProgressBar.setVisibility(View.VISIBLE);
                 userLogin();
             }
         });
@@ -95,6 +99,9 @@ public class LoginActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        loginProgressBar = findViewById(R.id.login_progress_bar);
+        loginProgressBar.setVisibility(View.GONE);
     }
 
     private void userLogin(){
@@ -127,6 +134,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else{
+                    loginProgressBar.setVisibility(View.GONE);
                     Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }

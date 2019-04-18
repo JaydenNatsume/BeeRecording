@@ -13,18 +13,21 @@
         android:focusableInTouchMode="true">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="0dp"
+            android:orientation="vertical"
             android:paddingLeft="24dp"
+            android:paddingTop="30dp"
             android:paddingRight="24dp">
 
-            <ImageView android:src="@drawable/logo_bee3"
+            <ImageView
                 android:layout_width="70dp"
                 android:layout_height="70dp"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="24dp"
-                android:layout_gravity="center_horizontal" />
+                android:src="@drawable/logo_bee3" />
 
             <!--  Email Label -->
             <android.support.design.widget.TextInputLayout
@@ -33,12 +36,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp">
-                <EditText android:id="@+id/input_email"
+
+                <EditText
+                    android:id="@+id/input_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="Email"
                     android:inputType="textEmailAddress"
-                    android:textColor="@color/colorText"
-                    android:hint="Email" />
+                    android:textColor="@color/colorText" />
             </android.support.design.widget.TextInputLayout>
 
             <!--  Password Label -->
@@ -48,12 +53,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp">
-                <EditText android:id="@+id/input_password"
+
+                <EditText
+                    android:id="@+id/input_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorText"
+                    android:hint="Password"
                     android:inputType="textPassword"
-                    android:hint="Password"/>
+                    android:textColor="@color/colorText" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.v7.widget.AppCompatButton
@@ -64,25 +71,33 @@
                 android:layout_marginBottom="24dp"
                 android:background="@color/colorPrimaryDark"
                 android:padding="12dp"
-                android:text="Login"/>
+                android:text="Login" />
 
-            <TextView android:id="@+id/link_signup"
+            <TextView
+                android:id="@+id/link_signup"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
+                android:gravity="center"
                 android:text="No account yet? Create one"
-                android:gravity="center"
-                android:textSize="16dip"
-                android:textColor="@color/colorText"/>
+                android:textColor="@color/colorText"
+                android:textSize="16dip" />
 
-            <TextView android:id="@+id/link_forgot_password"
+            <TextView
+                android:id="@+id/link_forgot_password"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                android:text="Forgot Password?"
                 android:gravity="center"
-                android:textSize="16dip"
-                android:textColor="@color/colorText"/>
+                android:text="Forgot Password?"
+                android:textColor="@color/colorText"
+                android:textSize="16dip" />
+
+            <ProgressBar
+                android:id="@+id/login_progress_bar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
