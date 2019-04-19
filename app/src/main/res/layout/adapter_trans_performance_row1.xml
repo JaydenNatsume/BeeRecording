@@ -34,7 +34,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:gravity="center"
-            android:textColor="@color/red" />
+            android:textColor="@color/green" />
 
         <TextView
             android:id="@+id/trans_performance_date"

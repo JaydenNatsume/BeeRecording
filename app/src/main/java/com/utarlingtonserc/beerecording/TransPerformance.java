@@ -2,6 +2,7 @@ package com.utarlingtonserc.beerecording;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -23,8 +24,10 @@ public class TransPerformance extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trans_performance);
 
-        performance_list_recyclerview = findViewById(R.id.trans_performance);
+        performance_list_recyclerview = findViewById(R.id.trans_performance_recycler_view);
         performance_list_recyclerview.setLayoutManager(new LinearLayoutManager(this));
+        // 增加默认分割线
+        performance_list_recyclerview.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
         initBuyList();
         transPerformanceAdapter = new TransPerformanceAdapter(this, performanceLists);
         performance_list_recyclerview.setAdapter(transPerformanceAdapter);

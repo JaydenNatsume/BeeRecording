@@ -31,8 +31,25 @@ public class TransPerformanceAdapter extends RecyclerView.Adapter<TransPerforman
     // inflates the row layout from xml when needed
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.adapter_trans_performance_row, parent, false);
+        View view;
+        if (viewType == 0){
+            view = mInflater.inflate(R.layout.adapter_trans_performance_row, parent, false);
+        }else {
+            view = mInflater.inflate(R.layout.adapter_trans_performance_row1, parent, false);
+        }
         return new ViewHolder(view);
+
+    }
+
+    // 返回值赋值给onCreateViewHolder的参数 viewType
+    @Override
+    public int getItemViewType(int position) {
+        if (position%2 == 0) {
+            return 0;
+        } else if (position%2 == 1) {
+            return 1;
+        }
+        return -1;
     }
 
     // binds the data to the TextView in each row

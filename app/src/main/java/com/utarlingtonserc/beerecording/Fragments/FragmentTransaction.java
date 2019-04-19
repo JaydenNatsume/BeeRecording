@@ -11,6 +11,7 @@ import android.widget.Button;
 
 import com.utarlingtonserc.beerecording.R;
 import com.utarlingtonserc.beerecording.TransBuy;
+import com.utarlingtonserc.beerecording.TransPerformance;
 import com.utarlingtonserc.beerecording.TransSell;
 
 public class FragmentTransaction extends Fragment {
@@ -43,7 +44,7 @@ public class FragmentTransaction extends Fragment {
         performanceBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent performance_intent = new Intent(getActivity(), TransSell.class);
+                Intent performance_intent = new Intent(getActivity(), TransPerformance.class);
                 startActivity(performance_intent);
             }
         });
