@@ -28,7 +28,8 @@
         <activity android:name=".NewsDetailActivity" />
         <activity android:name=".TransBuy" />
         <activity android:name=".TransSell" />
-        <activity android:name=".TransPerformance"></activity>
+        <activity android:name=".TransPerformance" />
+        <activity android:name=".TransSearch"></activity>
     </application>
 
 </manifest>

@@ -13,7 +13,7 @@ import com.utarlingtonserc.beerecording.R;
 
 import java.util.List;
 
-public class TransPerformanceAdapter extends RecyclerView.Adapter<TransPerformanceAdapter.ViewHolder> {
+public class TransSearchAdapter extends RecyclerView.Adapter<TransSearchAdapter.ViewHolder> {
 
     private List<PerformanceList> mData;
     private LayoutInflater mInflater;
@@ -23,7 +23,7 @@ public class TransPerformanceAdapter extends RecyclerView.Adapter<TransPerforman
 
 
     // data is passed into the constructor
-    public TransPerformanceAdapter(Context context, List<PerformanceList> data) {
+    public TransSearchAdapter(Context context, List<PerformanceList> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -33,9 +33,9 @@ public class TransPerformanceAdapter extends RecyclerView.Adapter<TransPerforman
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
         if (viewType == 0){
-            view = mInflater.inflate(R.layout.adapter_trans_performance_row, parent, false);
+            view = mInflater.inflate(R.layout.adapter_trans_search_row, parent, false);
         }else {
-            view = mInflater.inflate(R.layout.adapter_trans_performance_row1, parent, false);
+            view = mInflater.inflate(R.layout.adapter_trans_search_row1, parent, false);
         }
         return new ViewHolder(view);
 
@@ -59,7 +59,7 @@ public class TransPerformanceAdapter extends RecyclerView.Adapter<TransPerforman
         String transPerformance = mData.get(position).getTransPerformance();
         String transDate = mData.get(position).getTransDate();
         holder.symbol.setText(tickerSymbol);
-        holder.performance.setText(transPerformance);
+        holder.search.setText(transPerformance);
         holder.date.setText(transDate);
     }
 
@@ -73,14 +73,14 @@ public class TransPerformanceAdapter extends RecyclerView.Adapter<TransPerforman
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         TextView symbol;
-        TextView performance;
+        TextView search;
         TextView date;
 
         ViewHolder(View itemView) {
             super(itemView);
-            symbol = (TextView) itemView.findViewById(R.id.trans_performance_symbol);
-            performance = (TextView) itemView.findViewById(R.id.trans_performance);
-            date = (TextView) itemView.findViewById(R.id.trans_performance_date);
+            symbol = (TextView) itemView.findViewById(R.id.trans_search_symbol);
+            search = (TextView) itemView.findViewById(R.id.trans_search);
+            date = (TextView) itemView.findViewById(R.id.trans_search_date);
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
         }
