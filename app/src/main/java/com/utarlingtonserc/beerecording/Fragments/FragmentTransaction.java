@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.utarlingtonserc.beerecording.R;
 import com.utarlingtonserc.beerecording.TransBuy;
@@ -25,6 +26,7 @@ import java.util.Calendar;
 public class FragmentTransaction extends Fragment {
 
     private TextView recordDate;
+    private String dateSearch;
 
     @Nullable
     @Override
@@ -32,6 +34,8 @@ public class FragmentTransaction extends Fragment {
         View view = inflater.inflate(R.layout.fragment_transaction, container, false);
 
         recordDate = view.findViewById(R.id.record_date);
+
+        dateSearch = "";
 
         Button buyBtn = view.findViewById(R.id.buy_btn);
         Button sellBtn = view.findViewById(R.id.sell_btn);
@@ -75,6 +79,7 @@ public class FragmentTransaction extends Fragment {
                                 calendar.set(Calendar.MONTH, month);
                                 calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                                 recordDate.setText(DateUtils.date2String(calendar.getTime(), DateUtils.YMD_FORMAT));
+                                dateSearch = DateUtils.date2String(calendar.getTime(), DateUtils.YMD_FORMAT);
                             }
                         },
                         calendar.get(Calendar.YEAR),
@@ -87,8 +92,14 @@ public class FragmentTransaction extends Fragment {
         recordSearchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent performance_intent = new Intent(getActivity(), TransSearch.class);
-                startActivity(performance_intent);
+                if (dateSearch.isEmpty()){
+                    Toast.makeText(getActivity(),"Blank input.", Toast.LENGTH_SHORT).show();
+                }else if (dateSearch.equals("04/24/2019")){
+                    Toast.makeText(getActivity(),"No match.", Toast.LENGTH_SHORT).show();
+                }else {
+                    Intent performance_intent = new Intent(getActivity(), TransSearch.class);
+                    startActivity(performance_intent);
+                }
             }
         });
 

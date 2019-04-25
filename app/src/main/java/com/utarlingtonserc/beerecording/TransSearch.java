@@ -34,6 +34,6 @@ public class TransSearch extends AppCompatActivity {
         searchLists.add(new PerformanceList("MSFT", "121.0500", "4/10/2019"));
         searchLists.add(new PerformanceList("AAPL", "199.0000", "4/10/2019"));
         searchLists.add(new PerformanceList("GOOG", "132.9000", "4/10/2019"));
-        searchLists.add(new PerformanceList("PYPL", "108.1000", "4/12/2019"));
+        searchLists.add(new PerformanceList("PYPL", "108.1000", "4/10/2019"));
     }
 }

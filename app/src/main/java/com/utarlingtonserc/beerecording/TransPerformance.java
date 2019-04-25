@@ -34,19 +34,19 @@ public class TransPerformance extends AppCompatActivity {
     }
 
     private void initBuyList() {
-        performanceLists.add(new PerformanceList("MSFT", "121.0500", "4/09/2019"));
-        performanceLists.add(new PerformanceList("AAPL", "199.0000", "4/10/2019"));
+        performanceLists.add(new PerformanceList("MSFT", "125.4400", "4/23/2019"));
+        performanceLists.add(new PerformanceList("AAPL", "207.1600", "4/24/2019"));
         performanceLists.add(new PerformanceList("GOOG", "1291.9000", "4/11/2019"));
         performanceLists.add(new PerformanceList("PYPL", "108.1000", "4/12/2019"));
-        performanceLists.add(new PerformanceList("MSFT", "121.0500", "4/12/2019"));
+        performanceLists.add(new PerformanceList("MSFT", "120.0100", "4/15/2019"));
         performanceLists.add(new PerformanceList("AAPL", "199.0000", "4/13/2019"));
         performanceLists.add(new PerformanceList("GOOG", "1291.9000", "4/14/2019"));
         performanceLists.add(new PerformanceList("PYPL", "108.1000", "4/15/2019"));
-        performanceLists.add(new PerformanceList("MSFT", "121.0500", "4/09/2019"));
+        performanceLists.add(new PerformanceList("MSFT", "112.0100", "4/09/2019"));
         performanceLists.add(new PerformanceList("AAPL", "199.0000", "4/10/2019"));
         performanceLists.add(new PerformanceList("GOOG", "1291.9000", "4/11/2019"));
         performanceLists.add(new PerformanceList("PYPL", "108.1000", "4/12/2019"));
-        performanceLists.add(new PerformanceList("MSFT", "121.0500", "4/12/2019"));
+        performanceLists.add(new PerformanceList("MSFT", "106.0300", "4/06/2019"));
         performanceLists.add(new PerformanceList("AAPL", "199.0000", "4/13/2019"));
         performanceLists.add(new PerformanceList("GOOG", "1291.9000", "4/14/2019"));
         performanceLists.add(new PerformanceList("PYPL", "108.1000", "4/15/2019"));

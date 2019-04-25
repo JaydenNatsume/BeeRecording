@@ -37,7 +37,7 @@
 
         <Button
             android:id="@+id/three_days_btn"
-            android:layout_width="160dp"
+            android:layout_width="170dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginRight="10dp"
@@ -45,7 +45,7 @@
 
         <Button
             android:id="@+id/past_week_btn"
-            android:layout_width="160dp"
+            android:layout_width="170dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:text="Past Week"/>
@@ -60,7 +60,7 @@
 
         <Button
             android:id="@+id/one_month_btn"
-            android:layout_width="160dp"
+            android:layout_width="170dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginRight="10dp"
@@ -68,7 +68,7 @@
 
         <Button
             android:id="@+id/three_month_btn"
-            android:layout_width="160dp"
+            android:layout_width="170dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:text="Last Three Month"/>
